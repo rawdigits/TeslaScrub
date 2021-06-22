@@ -155,6 +155,12 @@ class ProfileScrubber():
             ret= client1.publish("reservations/delivery","NO DELIVERY DATE")                   #publish
             ret= client1.publish("reservations/have_delivery","OFF")                   #publish
 
+        canary_re = re.compile(r'isNotMatchedToRa00Vin')
+        canary = canary_re.findall(account_page.get_text())
+        if len(canary) > 0:
+            ret= client1.publish("reservations/canary","ON")                   #publish
+        else:
+            ret= client1.publish("reservations/canary","OFF")                   #publish
 
     def scrub(self):
         self.get_csrf_token()
