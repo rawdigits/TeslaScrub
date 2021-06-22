@@ -166,7 +166,10 @@ class ProfileScrubber():
         self.get_csrf_token()
         self.log_in()
         while True:
-            self.find_reservation_numbers()
+            try:
+                self.find_reservation_numbers()
+            except:
+                log.info("It failed that time, but let's be dumb and just keep trying.")
             time.sleep(30)
 
 if __name__ == "__main__":
