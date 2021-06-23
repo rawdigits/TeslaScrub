@@ -158,9 +158,10 @@ class ProfileScrubber():
         canary_re = re.compile(r'isNotMatchedToRa00Vin')
         canary = canary_re.findall(account_page.get_text())
         if len(canary) > 0:
-            ret= client1.publish("reservations/canary","ON")                   #publish
+            ret= client1.publish("reservations/canary_last",int(time.time()))                   #publish
+            ret= client1.publish("reservations/canary", "ON")
         else:
-            ret= client1.publish("reservations/canary","OFF")                   #publish
+            ret= client1.publish("reservations/canary", "OFF")                   #publish
 
     def scrub(self):
         self.get_csrf_token()
