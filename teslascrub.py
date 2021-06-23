@@ -133,7 +133,7 @@ class ProfileScrubber():
 
         account_page = BeautifulSoup(self.profile_page, "html.parser")
 
-        vin_re = re.compile(r'5YJ\w+')
+        vin_re = re.compile(r'5YJ[S3XY]\w+')
         #vin_re = re.compile(r'RN\w+')
         vins = vin_re.findall(account_page.get_text())
         if len(vins) > 0:
